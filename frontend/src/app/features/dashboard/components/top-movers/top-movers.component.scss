@@ -1,0 +1,33 @@
+@import 'variables';
+@import 'mixins';
+
+.movers {
+  @include card;
+
+  &__title { font-size: $font-size-lg; font-weight: 600; margin-bottom: $spacing-md; }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    th {
+      @include label;
+      padding: $spacing-sm $spacing-md;
+      border-bottom: 1px solid $border-color;
+      text-align: left;
+    }
+    td { padding: $spacing-sm $spacing-md; }
+  }
+
+  &__row {
+    cursor: pointer;
+    transition: background $transition-fast;
+    &:hover { background: $bg-secondary; }
+  }
+
+  &__symbol { font-weight: 600; color: $primary; }
+  &__name { @include truncate; max-width: 200px; color: $text-secondary; font-size: $font-size-sm; }
+  &__price { font-family: $font-mono; font-weight: 600; }
+  &__change { font-family: $font-mono; font-weight: 600; @include stock-change-color; }
+}
+
+.text-right { text-align: right; }

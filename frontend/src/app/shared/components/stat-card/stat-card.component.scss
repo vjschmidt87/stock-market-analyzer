@@ -1,0 +1,10 @@
+@import 'variables';
+@import 'mixins';
+.stat-card {
+  @include card;
+  @include flex-column;
+  gap: 4px;
+  &__label { font-size: 0.75rem; color: $text-secondary; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500; }
+  &__value { font-family: $font-mono; font-size: 1.5rem; font-weight: 700; color: $text-primary; }
+  &__change { font-family: $font-mono; font-size: 0.875rem; font-weight: 600; @include stock-change-color; }
+}

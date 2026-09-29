@@ -1,0 +1,21 @@
+<div class="dashboard">
+  <h1 class="dashboard__title">Market Dashboard</h1>
+
+  @if (loading) {
+    <app-loading-spinner />
+  } @else if (error) {
+    <app-error-message [message]="error" />
+  } @else if (stats) {
+    <div class="dashboard__stats">
+      <app-stat-card label="Total Stocks" [value]="'' + stats.totalStocks" />
+      <app-stat-card label="Gainers" [value]="'' + stats.gainers" />
+      <app-stat-card label="Losers" [value]="'' + stats.losers" />
+      <app-stat-card label="Total Market Cap" [value]="formatMarketCap(stats.totalMarketCap)" />
+    </div>
+
+    <div class="dashboard__movers">
+      <app-top-movers [stocks]="stats.topGainers" title="Top Gainers" />
+      <app-top-movers [stocks]="stats.topLosers" title="Top Losers" />
+    </div>
+  }
+</div>

@@ -1,0 +1,50 @@
+@import 'variables';
+@import 'mixins';
+@import 'buttons';
+@import 'forms';
+
+.auth-page {
+  @include flex-center;
+  min-height: calc(100vh - $header-height - 60px);
+  padding: $spacing-lg;
+}
+
+.auth-card {
+  @include card;
+  width: 100%;
+  max-width: 420px;
+  h1 { font-size: $font-size-2xl; font-weight: 700; margin-bottom: $spacing-xs; }
+}
+
+.auth-subtitle {
+  color: $text-secondary;
+  font-size: $font-size-sm;
+  margin-bottom: $spacing-lg;
+}
+
+.auth-error {
+  padding: $spacing-sm $spacing-md;
+  background: $danger-light;
+  color: $danger;
+  border-radius: $border-radius-sm;
+  font-size: $font-size-sm;
+  margin-bottom: $spacing-md;
+}
+
+.form-group { @include form-group; }
+.form-label { @include form-label; }
+.form-input { @include form-input; width: 100%; }
+
+.btn-submit {
+  @include btn-primary;
+  width: 100%;
+  margin-top: $spacing-sm;
+}
+
+.auth-link {
+  text-align: center;
+  font-size: $font-size-sm;
+  color: $text-secondary;
+  margin-top: $spacing-lg;
+  a { color: $primary; font-weight: 500; }
+}

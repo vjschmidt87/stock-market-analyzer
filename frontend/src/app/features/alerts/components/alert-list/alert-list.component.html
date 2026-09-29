@@ -1,0 +1,38 @@
+<div class="alerts-page">
+  <h1>Price Alerts</h1>
+
+  <app-alert-form (alertCreated)="onAlertCreated($event)" />
+
+  @if (loading) {
+    <app-loading-spinner />
+  } @else if (error) {
+    <app-error-message [message]="error" />
+  } @else {
+    <app-notification-feed [alerts]="alerts" />
+
+    <div class="alerts-list">
+      <h3>All Alerts</h3>
+      @if (alerts.length === 0) {
+        <p class="alerts-list__empty">No alerts set up yet.</p>
+      } @else {
+        @for (alert of alerts; track trackById($index, alert)) {
+          <div class="alert-item" [class.triggered]="alert.triggered">
+            <div class="alert-item__info">
+              <span class="alert-item__symbol">{{ alert.stockSymbol }}</span>
+              <span class="alert-item__type">{{ formatType(alert.alertType) }}</span>
+              <span class="alert-item__target">{{ alert.targetValue }}</span>
+            </div>
+            <div class="alert-item__actions">
+              @if (alert.triggered) {
+                <span class="alert-item__badge">Triggered</span>
+              } @else {
+                <span class="alert-item__badge alert-item__badge--active">Active</span>
+              }
+              <button class="alert-item__delete" (click)="deleteAlert(alert.id)">Delete</button>
+            </div>
+          </div>
+        }
+      }
+    </div>
+  }
+</div>

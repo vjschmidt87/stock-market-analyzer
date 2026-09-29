@@ -1,0 +1,59 @@
+@import 'variables';
+@import 'mixins';
+@import 'buttons';
+@import 'forms';
+
+.watchlists {
+  @include page-container;
+
+  &__header {
+    @include flex-between;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+    margin-bottom: $spacing-xl;
+    h1 { font-size: $font-size-3xl; font-weight: 700; }
+  }
+
+  &__create {
+    display: flex;
+    gap: $spacing-sm;
+  }
+
+  &__input { @include form-input; min-width: 200px; }
+  &__btn { @include btn-primary; }
+
+  &__empty {
+    @include card;
+    text-align: center;
+    padding: $spacing-2xl;
+    color: $text-secondary;
+  }
+}
+
+.watchlist-card {
+  @include card;
+  margin-bottom: $spacing-lg;
+
+  &__header {
+    @include flex-between;
+    margin-bottom: $spacing-md;
+    h2 { font-size: $font-size-xl; font-weight: 600; }
+  }
+
+  &__delete { @include btn-danger; @include btn-sm; }
+
+  &__add {
+    display: flex;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-md;
+    input { @include form-input; flex: 1; }
+    button { @include btn-secondary; }
+  }
+
+  &__empty {
+    padding: $spacing-lg;
+    text-align: center;
+    color: $text-muted;
+    font-size: $font-size-sm;
+  }
+}

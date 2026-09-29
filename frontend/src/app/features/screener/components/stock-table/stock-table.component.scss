@@ -1,0 +1,39 @@
+@import 'variables';
+@import 'mixins';
+
+.table-container { overflow-x: auto; }
+
+.stock-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: $bg-card;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  box-shadow: $shadow-sm;
+
+  th {
+    @include label;
+    padding: $spacing-md;
+    border-bottom: 2px solid $border-color;
+    text-align: left;
+    background: $bg-secondary;
+  }
+
+  td { padding: $spacing-sm $spacing-md; border-bottom: 1px solid $bg-tertiary; }
+
+  &__row {
+    cursor: pointer;
+    transition: background $transition-fast;
+    &:hover { background: $bg-secondary; }
+  }
+
+  &__symbol { font-weight: 600; color: $primary; }
+  &__name { @include truncate; max-width: 200px; color: $text-secondary; font-size: $font-size-sm; }
+  &__price { font-family: $font-mono; font-weight: 600; }
+  &__change { font-family: $font-mono; font-weight: 600; @include stock-change-color; }
+  &__vol, &__pe { font-family: $font-mono; color: $text-secondary; font-size: $font-size-sm; }
+}
+
+.text-right { text-align: right; }
+.hide-mobile { @media (max-width: $breakpoint-md) { display: none; } }
+.hide-tablet { @media (max-width: $breakpoint-lg) { display: none; } }

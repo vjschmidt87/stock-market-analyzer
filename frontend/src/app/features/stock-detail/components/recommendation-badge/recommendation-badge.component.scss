@@ -1,0 +1,12 @@
+@import 'variables';
+.badge {
+  display: inline-flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 12px 24px; border-radius: 8px; font-weight: 600;
+  &__label { font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  &__score { font-size: 0.75rem; opacity: 0.8; }
+  &.strong-buy { background: #e8f5e9; color: #2e7d32; }
+  &.buy { background: #f1f8e9; color: #558b2f; }
+  &.hold { background: #fff3e0; color: #f57c00; }
+  &.sell { background: #fde8e8; color: #d32f2f; }
+  &.strong-sell { background: #ffebee; color: #b71c1c; }
+}

@@ -1,0 +1,41 @@
+<div class="watchlists">
+  <div class="watchlists__header">
+    <h1>My Watchlists</h1>
+    <div class="watchlists__create">
+      <input class="watchlists__input" type="text" [(ngModel)]="newWatchlistName"
+             placeholder="New watchlist name..." (keyup.enter)="createWatchlist()">
+      <button class="watchlists__btn" (click)="createWatchlist()" [disabled]="!newWatchlistName.trim()">Create</button>
+    </div>
+  </div>
+
+  @if (loading) {
+    <app-loading-spinner />
+  } @else if (error) {
+    <app-error-message [message]="error" />
+  } @else if (watchlists.length === 0) {
+    <div class="watchlists__empty">
+      <p>No watchlists yet. Create one to start tracking stocks.</p>
+    </div>
+  } @else {
+    @for (wl of watchlists; track trackById($index, wl)) {
+      <div class="watchlist-card">
+        <div class="watchlist-card__header">
+          <h2>{{ wl.name }}</h2>
+          <button class="watchlist-card__delete" (click)="deleteWatchlist(wl.id)">Delete</button>
+        </div>
+        <div class="watchlist-card__add">
+          <input type="text" [(ngModel)]="addSymbol[wl.id]"
+                 placeholder="Add stock symbol..." (keyup.enter)="addStock(wl.id)">
+          <button (click)="addStock(wl.id)">Add</button>
+        </div>
+        @if (wl.stocks.length === 0) {
+          <p class="watchlist-card__empty">No stocks in this watchlist</p>
+        } @else {
+          @for (stock of wl.stocks; track stock.symbol) {
+            <app-stock-row [stock]="stock" (remove)="removeStock(wl.id, $event)" />
+          }
+        }
+      </div>
+    }
+  }
+</div>

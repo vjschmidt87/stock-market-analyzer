@@ -1,0 +1,73 @@
+@mixin btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding: 10px $spacing-lg;
+  border: none;
+  border-radius: $border-radius;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all $transition-fast;
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+@mixin btn-primary {
+  @include btn-base;
+  background: $primary;
+  color: white;
+  &:hover:not(:disabled) { background: $primary-dark; }
+}
+
+@mixin btn-secondary {
+  @include btn-base;
+  background: $bg-tertiary;
+  color: $text-primary;
+  &:hover:not(:disabled) { background: $border-color; }
+}
+
+@mixin btn-outline {
+  @include btn-base;
+  background: transparent;
+  color: $primary;
+  border: 1px solid $primary;
+  &:hover:not(:disabled) { background: $primary-light; }
+}
+
+@mixin btn-danger {
+  @include btn-base;
+  background: $danger;
+  color: white;
+  &:hover:not(:disabled) { background: darken($danger, 10%); }
+}
+
+@mixin btn-success {
+  @include btn-base;
+  background: $accent;
+  color: white;
+  &:hover:not(:disabled) { background: $accent-dark; }
+}
+
+@mixin btn-sm {
+  padding: 6px $spacing-md;
+  font-size: $font-size-xs;
+}
+
+@mixin btn-lg {
+  padding: 14px $spacing-xl;
+  font-size: $font-size-base;
+}
+
+@mixin btn-icon {
+  @include btn-base;
+  @include flex-center;
+  padding: $spacing-sm;
+  background: transparent;
+  color: $text-secondary;
+  border-radius: 50%;
+  &:hover:not(:disabled) { background: $bg-tertiary; color: $text-primary; }
+}

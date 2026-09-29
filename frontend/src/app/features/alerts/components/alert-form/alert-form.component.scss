@@ -1,0 +1,28 @@
+@import 'variables';
+@import 'mixins';
+@import 'buttons';
+@import 'forms';
+
+.alert-form {
+  @include card;
+  margin-bottom: $spacing-lg;
+
+  &__row {
+    display: flex;
+    gap: $spacing-md;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+
+  &__field {
+    @include flex-column;
+    gap: $spacing-xs;
+    flex: 1;
+    min-width: 140px;
+  }
+
+  &__label { @include form-label; }
+  &__input { @include form-input; }
+  &__select { @include form-select; }
+  &__submit { @include btn-primary; white-space: nowrap; }
+}

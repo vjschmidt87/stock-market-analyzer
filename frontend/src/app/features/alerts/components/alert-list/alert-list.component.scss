@@ -1,0 +1,38 @@
+@import 'variables';
+@import 'mixins';
+@import 'buttons';
+
+.alerts-page {
+  @include page-container;
+  h1 { font-size: $font-size-3xl; font-weight: 700; margin-bottom: $spacing-lg; }
+}
+
+.alerts-list {
+  @include card;
+  h3 { font-size: $font-size-lg; font-weight: 600; margin-bottom: $spacing-md; }
+  &__empty { color: $text-muted; font-size: $font-size-sm; padding: $spacing-lg 0; text-align: center; }
+}
+
+.alert-item {
+  @include flex-between;
+  padding: $spacing-md;
+  border-bottom: 1px solid $border-color;
+  &.triggered { opacity: 0.6; }
+
+  &__info { display: flex; gap: $spacing-md; align-items: center; }
+  &__symbol { font-weight: 600; color: $primary; }
+  &__type { font-size: $font-size-sm; color: $text-secondary; }
+  &__target { font-family: $font-mono; font-weight: 600; }
+
+  &__actions { display: flex; gap: $spacing-sm; align-items: center; }
+  &__badge {
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $border-radius-sm;
+    font-size: $font-size-xs;
+    font-weight: 600;
+    background: $warning-light;
+    color: $warning;
+    &--active { background: $success-light; color: $success; }
+  }
+  &__delete { @include btn-secondary; @include btn-sm; }
+}

@@ -1,0 +1,19 @@
+@import 'variables';
+@import 'mixins';
+@import 'buttons';
+
+.screener {
+  @include page-container;
+
+  &__title { font-size: $font-size-3xl; font-weight: 700; margin-bottom: $spacing-lg; }
+
+  &__pagination {
+    @include flex-center;
+    gap: $spacing-md;
+    margin-top: $spacing-lg;
+    padding: $spacing-md;
+
+    button { @include btn-secondary; @include btn-sm; }
+    span { font-size: $font-size-sm; color: $text-secondary; }
+  }
+}

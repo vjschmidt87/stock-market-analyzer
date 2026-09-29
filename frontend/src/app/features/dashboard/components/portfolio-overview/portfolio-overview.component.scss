@@ -1,0 +1,7 @@
+@import 'variables';
+@import 'mixins';
+.portfolio-overview {
+  @include card;
+  h3 { font-size: 1.125rem; font-weight: 600; margin-bottom: 8px; }
+  p { color: #6b7280; font-size: 0.875rem; }
+}

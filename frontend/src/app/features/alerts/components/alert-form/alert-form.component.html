@@ -1,0 +1,24 @@
+<form class="alert-form" (ngSubmit)="submit()">
+  <div class="alert-form__row">
+    <div class="alert-form__field">
+      <label class="alert-form__label">Symbol</label>
+      <input class="alert-form__input" type="text" [(ngModel)]="symbol" name="symbol"
+             placeholder="AAPL" required>
+    </div>
+    <div class="alert-form__field">
+      <label class="alert-form__label">Alert Type</label>
+      <select class="alert-form__select" [(ngModel)]="alertType" name="alertType">
+        @for (type of alertTypes; track type.value) {
+          <option [value]="type.value">{{ type.label }}</option>
+        }
+      </select>
+    </div>
+    <div class="alert-form__field">
+      <label class="alert-form__label">Target Value</label>
+      <input class="alert-form__input" type="number" [(ngModel)]="targetValue" name="targetValue"
+             placeholder="150.00" step="0.01" required>
+    </div>
+    <button class="alert-form__submit" type="submit"
+            [disabled]="!symbol.trim() || targetValue === null">Create Alert</button>
+  </div>
+</form>

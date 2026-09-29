@@ -1,0 +1,27 @@
+<header class="header">
+  <div class="header__inner">
+    <a routerLink="/" class="header__logo">
+      <span class="header__logo-icon">&#x1F4C8;</span>
+      <span class="header__logo-text">StockAnalyzer</span>
+    </a>
+
+    <nav class="header__nav">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Dashboard</a>
+      <a routerLink="/stocks" routerLinkActive="active">Screener</a>
+      @if (isLoggedIn) {
+        <a routerLink="/watchlists" routerLinkActive="active">Watchlists</a>
+        <a routerLink="/alerts" routerLinkActive="active">Alerts</a>
+      }
+    </nav>
+
+    <div class="header__actions">
+      @if (isLoggedIn && user) {
+        <span class="header__user">{{ user.displayName }}</span>
+        <button class="header__logout" (click)="logout()">Logout</button>
+      } @else {
+        <a routerLink="/login" class="header__login">Login</a>
+        <a routerLink="/register" class="header__register">Register</a>
+      }
+    </div>
+  </div>
+</header>

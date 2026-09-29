@@ -1,0 +1,67 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:mock}
+
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:stockdb}
+    username: ${DB_USER:stockuser}
+    password: ${DB_PASSWORD:stockpass}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    open-in-view: false
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    default-property-inclusion: non_null
+
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: 86400000
+
+stock:
+  sync:
+    initial-delay: 30000
+    interval: 3600000
+  api:
+    key: ${STOCK_API_KEY:}
+    base-url: https://www.alphavantage.co/query
+
+app:
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:4200,http://localhost}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: when-authorized
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+logging:
+  level:
+    root: INFO
+    com.portfolio.stockanalyzer: DEBUG
+    org.springframework.security: INFO

@@ -1,0 +1,73 @@
+<div class="detail">
+  @if (loading) {
+    <app-loading-spinner />
+  } @else if (error) {
+    <app-error-message [message]="error" />
+  } @else if (stock) {
+    <div class="detail__header">
+      <div class="detail__title-block">
+        <h1>{{ stock.symbol }}</h1>
+        <p class="detail__company">{{ stock.companyName }}</p>
+        <span class="detail__badge">{{ stock.sector }} &middot; {{ stock.exchange }}</span>
+      </div>
+      <div class="detail__price-block">
+        <span class="detail__price">${{ stock.currentPrice | number:'1.2-2' }}</span>
+        <span class="detail__change"
+              [class.positive]="stock.changePercent >= 0"
+              [class.negative]="stock.changePercent < 0">
+          {{ stock.changePercent >= 0 ? '+' : '' }}{{ stock.changeAmount | number:'1.2-2' }}
+          ({{ stock.changePercent >= 0 ? '+' : '' }}{{ stock.changePercent | number:'1.2-2' }}%)
+        </span>
+      </div>
+    </div>
+
+    @if (analysis) {
+      <div class="detail__recommendation">
+        <app-recommendation-badge [recommendation]="analysis.recommendation" [score]="analysis.overallScore" />
+        <p class="detail__summary">{{ analysis.summary }}</p>
+      </div>
+    }
+
+    <app-price-chart [snapshots]="snapshots" [symbol]="stock.symbol"
+                     (periodChange)="onPeriodChange($event)" />
+
+    <div class="detail__info-grid">
+      <div class="detail__info-card">
+        <span class="detail__info-label">Day Range</span>
+        <span class="detail__info-value">${{ stock.dayLow | number:'1.2-2' }} - ${{ stock.dayHigh | number:'1.2-2' }}</span>
+      </div>
+      <div class="detail__info-card">
+        <span class="detail__info-label">52W Range</span>
+        <span class="detail__info-value">${{ stock.weekLow52 | number:'1.2-2' }} - ${{ stock.weekHigh52 | number:'1.2-2' }}</span>
+      </div>
+      <div class="detail__info-card">
+        <span class="detail__info-label">Volume</span>
+        <span class="detail__info-value">{{ formatVolume(stock.volume) }}</span>
+      </div>
+      <div class="detail__info-card">
+        <span class="detail__info-label">Avg Volume</span>
+        <span class="detail__info-value">{{ formatVolume(stock.avgVolume) }}</span>
+      </div>
+      <div class="detail__info-card">
+        <span class="detail__info-label">Market Cap</span>
+        <span class="detail__info-value">{{ formatMarketCap(stock.marketCap) }}</span>
+      </div>
+      <div class="detail__info-card">
+        <span class="detail__info-label">P/E Ratio</span>
+        <span class="detail__info-value">{{ stock.peRatio | number:'1.1-1' }}</span>
+      </div>
+      <div class="detail__info-card">
+        <span class="detail__info-label">Dividend Yield</span>
+        <span class="detail__info-value">{{ stock.dividendYield | number:'1.2-2' }}%</span>
+      </div>
+      <div class="detail__info-card">
+        <span class="detail__info-label">Previous Close</span>
+        <span class="detail__info-value">${{ stock.previousClose | number:'1.2-2' }}</span>
+      </div>
+    </div>
+
+    @if (analysis) {
+      <app-indicator-panel [analysis]="analysis" />
+    }
+  }
+</div>

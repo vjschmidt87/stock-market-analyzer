@@ -1,0 +1,55 @@
+<div class="indicators">
+  <h3 class="indicators__title">Technical Indicators</h3>
+  <div class="indicators__grid">
+    <div class="indicator">
+      <span class="indicator__label">SMA 20</span>
+      <span class="indicator__value">{{ analysis.sma20 | number:'1.2-2' }}</span>
+    </div>
+    <div class="indicator">
+      <span class="indicator__label">SMA 50</span>
+      <span class="indicator__value">{{ analysis.sma50 | number:'1.2-2' }}</span>
+    </div>
+    <div class="indicator">
+      <span class="indicator__label">SMA 200</span>
+      <span class="indicator__value">{{ analysis.sma200 | number:'1.2-2' }}</span>
+    </div>
+    <div class="indicator">
+      <span class="indicator__label">EMA 12</span>
+      <span class="indicator__value">{{ analysis.ema12 | number:'1.2-2' }}</span>
+    </div>
+    <div class="indicator">
+      <span class="indicator__label">EMA 26</span>
+      <span class="indicator__value">{{ analysis.ema26 | number:'1.2-2' }}</span>
+    </div>
+    <div class="indicator">
+      <span class="indicator__label">RSI (14)</span>
+      <span class="indicator__value" [ngClass]="getRsiClass()">{{ analysis.rsi | number:'1.2-2' }}</span>
+    </div>
+    <div class="indicator">
+      <span class="indicator__label">MACD Line</span>
+      <span class="indicator__value">{{ analysis.macdLine | number:'1.4-4' }}</span>
+    </div>
+    <div class="indicator">
+      <span class="indicator__label">MACD Signal</span>
+      <span class="indicator__value">{{ analysis.macdSignal | number:'1.4-4' }}</span>
+    </div>
+    <div class="indicator">
+      <span class="indicator__label">MACD Histogram</span>
+      <span class="indicator__value" [class.positive]="analysis.macdHistogram >= 0" [class.negative]="analysis.macdHistogram < 0">
+        {{ analysis.macdHistogram | number:'1.4-4' }}
+      </span>
+    </div>
+    <div class="indicator">
+      <span class="indicator__label">Bollinger Upper</span>
+      <span class="indicator__value">{{ analysis.bollingerUpper | number:'1.2-2' }}</span>
+    </div>
+    <div class="indicator">
+      <span class="indicator__label">Bollinger Middle</span>
+      <span class="indicator__value">{{ analysis.bollingerMiddle | number:'1.2-2' }}</span>
+    </div>
+    <div class="indicator">
+      <span class="indicator__label">Bollinger Lower</span>
+      <span class="indicator__value">{{ analysis.bollingerLower | number:'1.2-2' }}</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+@import 'variables';
+@import 'mixins';
+@import 'buttons';
+.stock-row {
+  @include flex-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid $border-color;
+  &__info { display: flex; gap: 12px; align-items: center; text-decoration: none; }
+  &__symbol { font-weight: 600; color: $primary; }
+  &__name { color: $text-secondary; font-size: 0.875rem; }
+  &__price { text-align: right; }
+  &__value { font-family: $font-mono; font-weight: 600; display: block; }
+  &__change { font-family: $font-mono; font-size: 0.75rem; @include stock-change-color; }
+  &__remove { @include btn-secondary; @include btn-sm; font-size: 0.75rem; }
+}

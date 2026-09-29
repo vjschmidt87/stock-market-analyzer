@@ -1,0 +1,82 @@
+@import 'variables';
+@import 'mixins';
+@import 'buttons';
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: $header-height;
+  background: $bg-primary;
+  border-bottom: 1px solid $border-color;
+  z-index: $z-header;
+
+  &__inner {
+    @include flex-between;
+    max-width: $breakpoint-xl;
+    margin: 0 auto;
+    height: 100%;
+    padding: 0 $spacing-lg;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    text-decoration: none;
+    &-icon { font-size: $font-size-xl; }
+    &-text {
+      font-size: $font-size-lg;
+      font-weight: 700;
+      color: $text-primary;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    gap: $spacing-lg;
+    a {
+      color: $text-secondary;
+      font-weight: 500;
+      font-size: $font-size-sm;
+      text-decoration: none;
+      padding: $spacing-sm 0;
+      border-bottom: 2px solid transparent;
+      transition: all $transition-fast;
+      &:hover, &.active {
+        color: $primary;
+        border-bottom-color: $primary;
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+  }
+
+  &__user {
+    font-size: $font-size-sm;
+    font-weight: 500;
+    color: $text-primary;
+  }
+
+  &__logout {
+    @include btn-secondary;
+    @include btn-sm;
+  }
+
+  &__login {
+    @include btn-outline;
+    @include btn-sm;
+    text-decoration: none;
+  }
+
+  &__register {
+    @include btn-primary;
+    @include btn-sm;
+    text-decoration: none;
+  }
+}

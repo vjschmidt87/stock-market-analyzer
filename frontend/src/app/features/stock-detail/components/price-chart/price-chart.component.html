@@ -1,0 +1,14 @@
+<div class="chart-container">
+  <div class="chart-header">
+    <h3>Price History</h3>
+    <div class="chart-periods">
+      @for (period of periods; track period) {
+        <button class="period-btn" [class.active]="period === selectedPeriod"
+                (click)="selectPeriod(period)">{{ period }}</button>
+      }
+    </div>
+  </div>
+  <div class="chart-wrapper">
+    <canvas #chartCanvas></canvas>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+@import 'variables';
+@import 'mixins';
+
+.chart-container { @include card; }
+
+.chart-header {
+  @include flex-between;
+  margin-bottom: $spacing-md;
+  h3 { font-size: $font-size-lg; font-weight: 600; }
+}
+
+.chart-periods {
+  display: flex;
+  gap: $spacing-xs;
+}
+
+.period-btn {
+  padding: $spacing-xs $spacing-sm;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-sm;
+  background: transparent;
+  font-size: $font-size-xs;
+  font-weight: 500;
+  color: $text-secondary;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover { background: $bg-secondary; }
+  &.active {
+    background: $primary;
+    color: white;
+    border-color: $primary;
+  }
+}
+
+.chart-wrapper {
+  position: relative;
+  height: 350px;
+}

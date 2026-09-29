@@ -1,0 +1,27 @@
+<div class="movers">
+  <h3 class="movers__title">{{ title }}</h3>
+  <table class="movers__table">
+    <thead>
+      <tr>
+        <th>Symbol</th>
+        <th>Company</th>
+        <th class="text-right">Price</th>
+        <th class="text-right">Change</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (stock of stocks; track trackBySymbol($index, stock)) {
+        <tr [routerLink]="['/stocks', stock.symbol]" class="movers__row">
+          <td class="movers__symbol">{{ stock.symbol }}</td>
+          <td class="movers__name">{{ stock.companyName }}</td>
+          <td class="movers__price text-right">${{ stock.currentPrice | number:'1.2-2' }}</td>
+          <td class="text-right">
+            <span class="movers__change" [class.positive]="stock.changePercent >= 0" [class.negative]="stock.changePercent < 0">
+              {{ stock.changePercent >= 0 ? '+' : '' }}{{ stock.changePercent | number:'1.2-2' }}%
+            </span>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

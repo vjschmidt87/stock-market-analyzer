@@ -1,0 +1,19 @@
+@import 'variables';
+@import 'mixins';
+
+.dashboard {
+  @include page-container;
+
+  &__title { font-size: $font-size-3xl; font-weight: 700; margin-bottom: $spacing-lg; }
+
+  &__stats {
+    @include grid(2, $spacing-md);
+    margin-bottom: $spacing-xl;
+    @include respond-to(md) { @include grid(4, $spacing-md); }
+  }
+
+  &__movers {
+    @include grid(1, $spacing-lg);
+    @include respond-to(lg) { @include grid(2, $spacing-lg); }
+  }
+}

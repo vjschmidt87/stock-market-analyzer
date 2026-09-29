@@ -1,0 +1,14 @@
+<div class="filters">
+  <div class="filters__search">
+    <input class="filters__input" type="text" [(ngModel)]="searchQuery"
+           (ngModelChange)="onSearch()" placeholder="Search stocks by name or symbol...">
+  </div>
+  <div class="filters__sector">
+    <select class="filters__select" [(ngModel)]="selectedSector" (ngModelChange)="onSectorChange()">
+      <option value="">All Sectors</option>
+      @for (sector of sectors; track sector) {
+        <option [value]="sector">{{ sector }}</option>
+      }
+    </select>
+  </div>
+</div>

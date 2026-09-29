@@ -1,0 +1,34 @@
+<div class="table-container">
+  <table class="stock-table">
+    <thead>
+      <tr>
+        <th>Symbol</th>
+        <th>Company</th>
+        <th class="text-right">Price</th>
+        <th class="text-right">Change</th>
+        <th class="text-right hide-mobile">Volume</th>
+        <th class="text-right hide-mobile">Market Cap</th>
+        <th class="text-right hide-tablet">P/E</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (stock of stocks; track trackBySymbol($index, stock)) {
+        <tr class="stock-table__row" (click)="goToStock(stock.symbol)">
+          <td class="stock-table__symbol">{{ stock.symbol }}</td>
+          <td class="stock-table__name">{{ stock.companyName }}</td>
+          <td class="stock-table__price text-right">${{ stock.currentPrice | number:'1.2-2' }}</td>
+          <td class="text-right">
+            <span class="stock-table__change"
+                  [class.positive]="stock.changePercent >= 0"
+                  [class.negative]="stock.changePercent < 0">
+              {{ stock.changePercent >= 0 ? '+' : '' }}{{ stock.changePercent | number:'1.2-2' }}%
+            </span>
+          </td>
+          <td class="stock-table__vol text-right hide-mobile">{{ formatVolume(stock.volume) }}</td>
+          <td class="text-right hide-mobile">{{ formatMarketCap(stock.marketCap) }}</td>
+          <td class="stock-table__pe text-right hide-tablet">{{ stock.peRatio | number:'1.1-1' }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

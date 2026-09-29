@@ -1,0 +1,78 @@
+@import 'variables';
+@import 'mixins';
+
+.detail {
+  @include page-container;
+
+  &__header {
+    @include flex-between;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+    margin-bottom: $spacing-xl;
+  }
+
+  &__title-block {
+    h1 { font-size: $font-size-3xl; font-weight: 700; }
+  }
+
+  &__company { color: $text-secondary; font-size: $font-size-lg; }
+
+  &__badge {
+    display: inline-block;
+    padding: $spacing-xs $spacing-sm;
+    background: $bg-tertiary;
+    border-radius: $border-radius-sm;
+    font-size: $font-size-xs;
+    color: $text-secondary;
+    margin-top: $spacing-xs;
+  }
+
+  &__price-block { text-align: right; }
+
+  &__price {
+    display: block;
+    font-family: $font-mono;
+    font-size: $font-size-3xl;
+    font-weight: 700;
+  }
+
+  &__change {
+    font-family: $font-mono;
+    font-size: $font-size-lg;
+    font-weight: 600;
+    @include stock-change-color;
+  }
+
+  &__recommendation {
+    @include card;
+    @include flex-between;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__summary {
+    flex: 1;
+    min-width: 250px;
+    font-size: $font-size-sm;
+    color: $text-secondary;
+    line-height: 1.5;
+  }
+
+  &__info-grid {
+    @include grid(2, $spacing-md);
+    margin: $spacing-lg 0;
+    @include respond-to(md) { @include grid(4, $spacing-md); }
+  }
+
+  &__info-card {
+    @include flex-column;
+    gap: $spacing-xs;
+    padding: $spacing-md;
+    background: $bg-secondary;
+    border-radius: $border-radius;
+  }
+
+  &__info-label { @include label; font-size: $font-size-xs; }
+  &__info-value { font-family: $font-mono; font-weight: 600; font-size: $font-size-base; }
+}

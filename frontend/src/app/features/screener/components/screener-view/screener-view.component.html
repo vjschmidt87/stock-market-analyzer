@@ -1,0 +1,24 @@
+<div class="screener">
+  <h1 class="screener__title">Stock Screener</h1>
+
+  <app-filter-panel
+    [sectors]="sectors"
+    (searchChange)="onSearchChange($event)"
+    (sectorChange)="onSectorChange($event)" />
+
+  @if (loading) {
+    <app-loading-spinner />
+  } @else if (error) {
+    <app-error-message [message]="error" />
+  } @else {
+    <app-stock-table [stocks]="stocks" />
+
+    @if (totalPages > 1) {
+      <div class="screener__pagination">
+        <button [disabled]="currentPage === 0" (click)="loadPage(currentPage - 1)">Previous</button>
+        <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+        <button [disabled]="currentPage >= totalPages - 1" (click)="loadPage(currentPage + 1)">Next</button>
+      </div>
+    }
+  }
+</div>
